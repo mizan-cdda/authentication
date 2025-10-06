@@ -11,10 +11,10 @@ export const userSessionClient = () => {
     return {
         id: "user-sessions",
         $InferServerPlugin: {} as ReturnType<any>,
-        pathMethods: {
-            "/get-session": "GET",
-            "/user-sessions/all": "GET", // Add this if you have an endpoint
-        },
+        // pathMethods: {
+        //     "/get-session": "GET",
+        //     "/user-sessions/all": "GET", // Add this if you have an endpoint
+        // },
         getActions: ($fetch) => ({
             session: {
                 // Fetch sessions by roleId
