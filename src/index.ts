@@ -44,24 +44,13 @@ export const userRoleClient = () => {
                 data: { hasRole: boolean; role?: Role } | null;
                 error: Error | null;
             }> => {
-                return {
-                    data: {
-                        hasRole: true,
-                        role: {
-                            id: "id",
-                            title: "something",
-                            slug: "something",
-                            description: "something",
-                            createdAt: new Date(),
-                            updatedAt: new Date(),
-                        }
-                    }, error: null
-                };
+
 
                 try {
                     if (!data.roleId && !data.slug) {
                         throw new Error("Either roleId or slug is required");
                     }
+
 
                     const userRolesResponse = await $fetch<GetUserRolesResponse>(
                         "/user-role/user/roles",
@@ -87,9 +76,22 @@ export const userRoleClient = () => {
                         data.roleId ? role.id === data.roleId : role.slug === data.slug
                     );
 
+                    // return {
+                    //     data: { hasRole, role },
+                    //     error: null,
+                    // };
                     return {
-                        data: { hasRole, role },
-                        error: null,
+                        data: {
+                            hasRole: true,
+                            role: {
+                                id: "id",
+                                title: "something",
+                                slug: "something",
+                                description: "something",
+                                createdAt: new Date(),
+                                updatedAt: new Date(),
+                            }
+                        }, error: null
                     };
                 } catch (error) {
                     return {
