@@ -11,9 +11,6 @@ export const userSessionClient = () => {
     return {
         id: "user-sessions",
         $InferServerPlugin: {} as ReturnType<any>,
-        pathMethods: {
-            "/get-session": "GET",
-        },
         getActions: ($fetch) => ({
             session: {
                 get: (data: { roleId: string }, fetchOptions?: BetterFetchOption) =>
