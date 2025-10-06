@@ -7,7 +7,7 @@ import type {
     UserWithRoles,
 } from "./types";
 
-export const userRoleClient = () => {
+export const userSessionClient = () => {
     return {
         id: "user-sessions",
         $InferServerPlugin: {} as ReturnType<any>,
