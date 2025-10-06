@@ -14,14 +14,14 @@ export const userSessionClient = () => {
         getActions: ($fetch) => ({
             // Remove the nested 'session' object - flatten it!
             getSession: (data?: { roleId?: string }, fetchOptions?: BetterFetchOption) =>
-                $fetch("/get-session", {
+                $fetch("", {
                     method: "GET",
                     query: data,
                     ...fetchOptions,
                 }),
 
             getAllSessions: (fetchOptions?: BetterFetchOption) =>
-                $fetch("/get-session", {
+                $fetch("", {
                     method: "GET",
                     ...fetchOptions,
                 }),
