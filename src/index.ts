@@ -7,27 +7,18 @@ import type {
     UserWithRoles,
 } from "./types";
 
-export const userSessionClient = () => {
+export const userRoleClient = () => {
     return {
         id: "user-sessions",
         $InferServerPlugin: {} as ReturnType<any>,
-        // pathMethods: {
-        //     "/get-session": "GET",
-        //     "/user-sessions/all": "GET", // Add this if you have an endpoint
-        // },
+        pathMethods: {
+            "/get-session": "GET",
+        },
         getActions: ($fetch) => ({
             session: {
-                // Fetch sessions by roleId
                 get: (data: { roleId: string }, fetchOptions?: BetterFetchOption) =>
-                    $fetch("/user-sessions", {
+                    $fetch("/get-session", {  // Changed from "/user-sessions" to "/get-session"
                         query: data,
-                        ...fetchOptions,
-                    }),
-
-                // Fetch all sessions (no roleId required)
-                getAll: (fetchOptions?: BetterFetchOption) =>
-                    $fetch("/user-sessions", {
-                        method: "GET",
                         ...fetchOptions,
                     }),
             },
