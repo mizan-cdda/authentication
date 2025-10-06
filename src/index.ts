@@ -12,20 +12,19 @@ export const userSessionClient = () => {
         id: "user-sessions",
         $InferServerPlugin: {} as ReturnType<any>,
         getActions: ($fetch) => ({
-            session: {
-                // Change "/user-sessions" to "/get-session"
-                get: (data: { roleId: string }, fetchOptions?: BetterFetchOption) =>
-                    $fetch("/get-session", {  // ← Changed this
-                        query: data,
-                        ...fetchOptions,
-                    }),
+            // Remove the nested 'session' object - flatten it!
+            getSession: (data?: { roleId?: string }, fetchOptions?: BetterFetchOption) =>
+                $fetch("/get-session", {
+                    method: "GET",
+                    query: data,
+                    ...fetchOptions,
+                }),
 
-                getAll: (fetchOptions?: BetterFetchOption) =>
-                    $fetch("/get-session", {  // ← Changed this
-                        method: "GET",
-                        ...fetchOptions,
-                    }),
-            },
+            getAllSessions: (fetchOptions?: BetterFetchOption) =>
+                $fetch("/get-session", {
+                    method: "GET",
+                    ...fetchOptions,
+                }),
         }),
     } satisfies BetterAuthClientPlugin;
 };
